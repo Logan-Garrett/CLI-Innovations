@@ -1,1 +1,43 @@
-<h1>Welcome to CLI Innovations!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLI Innovations</title>
+    <!-- Include Markdown-it library -->
+    <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Welcome to CLI Innovations!</h1>
+    </header>
+    
+    <main>
+        <!-- Container for converted Markdown content -->
+        <div id="markdown-content"></div>
+    </main>
+    
+    <footer>
+        <p>&copy; 2024 CLI Innovations. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to convert Markdown content to HTML
+        function convertMarkdownToHTML(markdownContent) {
+            var md = window.markdownit();
+            return md.render(markdownContent);
+        }
+
+        // Fetch README file content
+        fetch('README.md')
+            .then(response => response.text())
+            .then(markdownContent => {
+                // Convert Markdown content to HTML
+                var htmlContent = convertMarkdownToHTML(markdownContent);
+                // Set the HTML content in the container
+                document.getElementById('markdown-content').innerHTML = htmlContent;
+            })
+            .catch(error => console.error('Error fetching README file:', error));
+    </script>
+</body>
+</html>
